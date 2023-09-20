@@ -79,10 +79,11 @@ WSGI_APPLICATION = 'renteazePy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'renteazepy',
+        'NAME': 'renteaze',
         'USER': 'postgres',
         'PASSWORD': 'password',
-        'HOST': 'localhost'
+        'HOST': 'localhost',
+        'PORT': '5420'
     }
 }
 
