@@ -2,4 +2,12 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import Listing
-admin.site.register(Listing)
+
+class ListingAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'city', 'is_published', 'price')
+    list_display_links = ('id', 'title')
+    list_filter = ('agent',)
+    list_editable = ('is_published',)
+    search_fields = ('title', 'description', 'address', 'city', 'postcode')
+    list_per_page = 25
+admin.site.register(Listing, ListingAdmin)
