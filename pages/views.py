@@ -1,12 +1,16 @@
 from django.shortcuts import render
 from listings.models import Listing
 from agents.models import Agent
+from listings.choices import price_choices, bedroom_choices, postcode_choices
 # from django.http import HttpResponse
 # Create your views here.
 def index(request):
     listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:3]
     context = {
-        'listings': listings
+        'listings': listings,
+        'price_choices': price_choices,
+        'bedroom_choices': bedroom_choices,
+        'postcode_choices': postcode_choices
     }
     return render(request, 'pages/index.html', context)
 
