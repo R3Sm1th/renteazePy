@@ -13,6 +13,13 @@ def contact(request):
         user_id = request.POST['user_id']
         agent_email = request.POST['agent_email']
 
+        if request.user.is_authenticated:
+            user_id = request.user.id
+            has_contacted = Contact.objects.all().filter(listing_is=listing_id, user_id=user_id)
+            if has_contacted:
+                messages.error(request, 'You have already made an enquiry')
+                return redirect('/listings/'+listing_id)
+
         contact = Contact(listing=listing, listing_id=listing_id, name=name, email=email, phone=phone, text=message, user_id=user_id)
         contact.save()
 
